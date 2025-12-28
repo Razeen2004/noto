@@ -1,0 +1,80 @@
+/* Fullscreen Centered Background */
+.signin {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Card with glass effect */
+.signin-card {
+    width: 380px;
+    padding: 40px 20px;
+    background: rgba(28, 28, 28, 0.7);
+    border-radius: 16px;
+    border: 3px solid rgb(151 151 151 / 10%);
+    backdrop-filter: blur(8px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Title */
+.signin-title {
+    font-weight: 600;
+    font-size: 28px;
+    margin-bottom: 30px;
+    color: #fcfcfc;
+}
+
+/* Form */
+.signin-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.signin-form input {
+    padding: 10px 12px;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    background: rgba(42, 42, 42, 0.9);
+    color: #fcfcfc;
+    transition: all 0.2s ease;
+}
+
+.signin-form input::placeholder {
+    color: #aaa;
+}
+
+/* Button */
+.signin-form button {
+    padding: 10px 12px;
+    border-radius: 6px;
+    border: none;
+    background: #a91233;
+    color: #fff;
+    font-weight: 500;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.signin-form button:hover {
+    background: #ce1c43;
+}
+
+/* Footer */
+.signin-footer {
+    margin-top: 22px;
+    font-size: 14px;
+    color: #ccc;
+}
+
+.signin-footer a {
+    color: #ce1c43;
+    font-weight: 500;
+}
