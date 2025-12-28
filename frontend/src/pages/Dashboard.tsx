@@ -52,7 +52,7 @@ export default function Dashboard() {
     // Refs for GSAP
     const modalRef = useRef<HTMLDivElement>(null);
     const overlayRef = useRef<HTMLDivElement>(null);
-
+    
     useEffect(() => {
         fetchUser();
         CheckNotes();
@@ -60,11 +60,11 @@ export default function Dashboard() {
 
     const fetchUser = async () => {
         try {
-            const response = await fetch("http://localhost:5000/api/auth/get-user", {
+            const response = await fetch(`${import.meta.env.REACT_APP_API_URL}/api/auth/get-user`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": localStorage?.getItem("token")
+                    Authorization: localStorage.getItem("token") || "",
                 }
             })
             const userData = await response.json();
@@ -86,11 +86,11 @@ export default function Dashboard() {
 
     const CheckNotes = async () => {
         try {
-            const checkNotes = await fetch("http://localhost:5000/api/notes/get-all-notes", {
+            const checkNotes = await fetch(`${import.meta.env.REACT_APP_API_URL}/api/notes/get-all-notes`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": localStorage.getItem("token")
+                    Authorization: localStorage.getItem("token") || "",
                 }
             })
             const data = await checkNotes.json();
@@ -157,12 +157,12 @@ export default function Dashboard() {
             if (isEdit && currentNote) {
                 // UPDATE NOTE
                 const res = await fetch(
-                    `http://localhost:5000/api/notes/edit-note/${currentNote._id}`,
+                    `${import.meta.env.REACT_APP_API_URL}/api/notes/edit-note/${currentNote._id}`,
                     {
                         method: "PUT",
                         headers: {
                             "Content-Type": "application/json",
-                            "Authorization": localStorage.getItem("token") || "",
+                            Authorization: localStorage.getItem("token") || "",
                         },
                         body: JSON.stringify({
                             content: textValue,
@@ -178,11 +178,11 @@ export default function Dashboard() {
                 showToast("Note updated", "success");
             } else {
                 // CREATE NOTE
-                const res = await fetch("http://localhost:5000/api/notes/add-note", {
+                const res = await fetch(`${import.meta.env.REACT_APP_API_URL}/api/notes/add-note`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": localStorage.getItem("token") || "",
+                        Authorization: localStorage.getItem("token") || "",
                     },
                     body: JSON.stringify({
                         content: textValue,
@@ -208,11 +208,11 @@ export default function Dashboard() {
 
         try {
             const res = await fetch(
-                `http://localhost:5000/api/notes/delete-note/${currentNote._id}`,
+                `${import.meta.env.REACT_APP_API_URL}/api/notes/delete-note/${currentNote._id}`,
                 {
                     method: "DELETE",
                     headers: {
-                        "Authorization": localStorage.getItem("token") || "",
+                        Authorization: localStorage.getItem("token") || "",
                     },
                 }
             );
@@ -248,12 +248,12 @@ export default function Dashboard() {
 
         try {
             await fetch(
-                `http://localhost:5000/api/notes/update-note-pinned/${currentNote._id}`,
+                `${import.meta.env.REACT_APP_API_URL}/api/notes/update-note-pinned/${currentNote._id}`,
                 {
                     method: "PUT",
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": localStorage.getItem("token") || "",
+                        Authorization: localStorage.getItem("token") || "",
                     },
                     body: JSON.stringify({ starred: updatedStar }),
                 }
