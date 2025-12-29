@@ -16,9 +16,7 @@ services:
     build: ./frontend
     container_name: noto-frontend
     ports:
-      - "5173:5173"
-    environment:
-      REACT_APP_API_URL: http://backend:5000
+      - "5173:80"
     depends_on:
       - backend
 
@@ -28,5 +26,3 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: noto
       MONGO_INITDB_ROOT_PASSWORD: root
-    ports:
-      - "27018:27017"
