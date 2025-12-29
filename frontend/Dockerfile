@@ -8,13 +8,19 @@ RUN npm install
 
 COPY . .
 RUN npm run build
-RUN ls -la /app  # Add this: lists contents of /app (should show 'dist')
-RUN ls -la /app/dist  # Add this: lists contents of dist (should show index.html, assets, etc.)
+
+# Debug: List root and check common output dirs
+RUN ls -la /app
+RUN echo "Checking for build folder:" && ls -la /app/build || echo "No build folder"
+RUN echo "Checking for dist folder:" && ls -la /app/dist || echo "No dist folder"
 
 # Production stage
 FROM nginx:alpine
 
-COPY --from=build /app/dist /usr/share/nginx/html
+# Try build first (most likely for CRA)
+COPY --from=build /app/build /usr/share/nginx/html
+
+# If it's actually Vite and dist exists, this fallback would work (but multi-COPY isn't allowed; see alternative below)
 
 EXPOSE 80
 
