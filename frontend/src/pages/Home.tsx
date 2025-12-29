@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { FiEdit2 } from "react-icons/fi";
 import { FiZap, FiLock, FiSearch, FiFeather } from "react-icons/fi"
 import { FiGithub, FiTwitter, FiMail } from "react-icons/fi";

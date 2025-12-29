@@ -1,5 +1,5 @@
 import "./Dashboard.css";
-import { FiPlus, FiStar, FiTrash2, FiLogOut, FiChevronLeft, FiEdit2 } from "react-icons/fi";
+import { FiPlus, FiTrash2, FiLogOut, FiChevronLeft, FiEdit2 } from "react-icons/fi";
 import { useState, useLayoutEffect, useRef, useEffect } from "react";
 import gsap from "gsap";
 import { FaRegStar, FaStar } from "react-icons/fa";
@@ -195,8 +195,9 @@ export default function Dashboard() {
 
                 const data = await res.json();
                 CheckNotes();
-
-                showToast("Note added", "success");
+                if (data) {
+                    showToast("Note added", "success");
+                }
             }
         } catch (err) {
             showToast("Something went wrong", "error");
