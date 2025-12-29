@@ -52,7 +52,7 @@ export default function Dashboard() {
     // Refs for GSAP
     const modalRef = useRef<HTMLDivElement>(null);
     const overlayRef = useRef<HTMLDivElement>(null);
-    
+
     useEffect(() => {
         fetchUser();
         CheckNotes();
@@ -60,7 +60,7 @@ export default function Dashboard() {
 
     const fetchUser = async () => {
         try {
-            const response = await fetch(`${import.meta.env.REACT_APP_API_URL}/api/auth/get-user`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/get-user`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -68,16 +68,18 @@ export default function Dashboard() {
                 }
             })
             const userData = await response.json();
-            showToast("Logged In", "success");
-            setCurrentUser({    
+            if (userData) {
+                showToast("Signed In", "success");
+            }
+            setCurrentUser({
                 firstName: userData.user.firstName,
                 lastName: userData.user.lastName,
                 email: userData.user.email
             })
 
-        }catch(error: any){
+        } catch (error: any) {
             showToast("An error occured, please login", "erorr");
-            setTimeout(()=>{
+            setTimeout(() => {
                 window.location.href = '/login'
             }, 2000)
         }
@@ -86,7 +88,7 @@ export default function Dashboard() {
 
     const CheckNotes = async () => {
         try {
-            const checkNotes = await fetch(`${import.meta.env.REACT_APP_API_URL}/api/notes/get-all-notes`, {
+            const checkNotes = await fetch(`${import.meta.env.VITE_API_URL}/api/notes/get-all-notes`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -157,7 +159,7 @@ export default function Dashboard() {
             if (isEdit && currentNote) {
                 // UPDATE NOTE
                 const res = await fetch(
-                    `${import.meta.env.REACT_APP_API_URL}/api/notes/edit-note/${currentNote._id}`,
+                    `${import.meta.env.VITE_API_URL}/api/notes/edit-note/${currentNote._id}`,
                     {
                         method: "PUT",
                         headers: {
@@ -178,7 +180,7 @@ export default function Dashboard() {
                 showToast("Note updated", "success");
             } else {
                 // CREATE NOTE
-                const res = await fetch(`${import.meta.env.REACT_APP_API_URL}/api/notes/add-note`, {
+                const res = await fetch(`${import.meta.env.VITE_API_URL}/api/notes/add-note`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -208,7 +210,7 @@ export default function Dashboard() {
 
         try {
             const res = await fetch(
-                `${import.meta.env.REACT_APP_API_URL}/api/notes/delete-note/${currentNote._id}`,
+                `${import.meta.env.VITE_API_URL}/api/notes/delete-note/${currentNote._id}`,
                 {
                     method: "DELETE",
                     headers: {
@@ -235,10 +237,11 @@ export default function Dashboard() {
 
     const handleLogout = async () => {
         showToast("You have been logged out..", "success");
+        showToast("Moving to Home Page..", "success");
         localStorage.removeItem("token");
-        setTimeout(()=> {
+        setTimeout(() => {
             window.location.href = "/";
-        }, 3000)
+        }, 2000)
     };
 
     const handleStar = async () => {
@@ -248,7 +251,7 @@ export default function Dashboard() {
 
         try {
             await fetch(
-                `${import.meta.env.REACT_APP_API_URL}/api/notes/update-note-pinned/${currentNote._id}`,
+                `${import.meta.env.VITE_API_URL}/api/notes/update-note-pinned/${currentNote._id}`,
                 {
                     method: "PUT",
                     headers: {

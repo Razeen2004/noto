@@ -10,6 +10,30 @@ import "./home.css";
 
 export default function Home() {
 
+    const [loggedIn, setLoggedIn] = useState(false);
+
+    useEffect(() => {
+        fetchUser();
+    })
+
+    const fetchUser = async () => {
+        try {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/get-user`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: localStorage.getItem("token") || "",
+                }
+            })
+            const userData = await response.json();
+            if (userData) {
+                setLoggedIn(true)
+            }
+        } catch (error: any) {
+            setLoggedIn(false)
+        }
+    }
+
     return (
         <>
             <div className="main-container">
@@ -19,7 +43,11 @@ export default function Home() {
                     <div className="nav-links">
                         <a href="#features">Features</a>
                         <a href="#faqs">FAQs</a>
-                        <a className="nav-btn" href="/signup">Sign Up</a>
+                        {loggedIn ? (
+                            <a className="nav-btn" href="/dashboard">Dashboard</a>
+                        ) : (
+                            <a className="nav-btn" href="/login">Log In</a>
+                        )}
                     </div>
                 </nav>
 
@@ -33,7 +61,9 @@ export default function Home() {
                             Capture ideas, plans, and reminders in a clean and focused notes
                             experience.
                         </p>
-                        <button className="primary-btn">Start Writing</button>
+                        <div className="nav-links">
+                            <a className="nav-btn" href="/login">Start Writing</a>
+                        </div>
                     </div>
 
                     <div className="hero-preview">

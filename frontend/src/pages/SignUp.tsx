@@ -13,7 +13,7 @@ export default function SignUp() {
     const handleSubmit = async (e: any) => {
         e.preventDefault();
         try {
-            const response = await fetch(`${import.meta.env.REACT_APP_API_URL}/api/auth/create-account`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/create-account`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
