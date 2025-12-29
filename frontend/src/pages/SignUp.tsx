@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "./SignUp.css";
+import "./Signup.css";
 import { useState } from "react";
 import { useToast } from "../toast/ToastContext";
 
