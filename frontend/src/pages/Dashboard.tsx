@@ -60,7 +60,7 @@ export default function Dashboard() {
 
     const fetchUser = async () => {
         try {
-            const response = await fetch(`/api/auth/get-user`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/get-user`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -88,7 +88,7 @@ export default function Dashboard() {
 
     const CheckNotes = async () => {
         try {
-            const checkNotes = await fetch(`/api/notes/get-all-notes`, {
+            const checkNotes = await fetch(`${import.meta.env.VITE_API_URL}/api/notes/get-all-notes`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -159,7 +159,7 @@ export default function Dashboard() {
             if (isEdit && currentNote) {
                 // UPDATE NOTE
                 const res = await fetch(
-                    `/api/notes/edit-note/${currentNote._id}`,
+                    `${import.meta.env.VITE_API_URL}/api/notes/edit-note/${currentNote._id}`,
                     {
                         method: "PUT",
                         headers: {
@@ -180,7 +180,7 @@ export default function Dashboard() {
                 showToast("Note updated", "success");
             } else {
                 // CREATE NOTE
-                const res = await fetch(`/api/notes/add-note`, {
+                const res = await fetch(`${import.meta.env.VITE_API_URL}/api/notes/add-note`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -211,7 +211,7 @@ export default function Dashboard() {
 
         try {
             const res = await fetch(
-                `/api/notes/delete-note/${currentNote._id}`,
+                `${import.meta.env.VITE_API_URL}/api/notes/delete-note/${currentNote._id}`,
                 {
                     method: "DELETE",
                     headers: {
@@ -252,7 +252,7 @@ export default function Dashboard() {
 
         try {
             await fetch(
-                `/api/notes/update-note-pinned/${currentNote._id}`,
+                `${import.meta.env.VITE_API_URL}/api/notes/update-note-pinned/${currentNote._id}`,
                 {
                     method: "PUT",
                     headers: {

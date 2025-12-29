@@ -18,7 +18,7 @@ export default function Home() {
 
     const fetchUser = async () => {
         try {
-            const response = await fetch(`/api/auth/get-user`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/get-user`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
