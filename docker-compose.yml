@@ -16,7 +16,9 @@ services:
     build: ./frontend
     container_name: noto-frontend
     ports:
-      - "5173:80"
+      - "5173:5173"
+    environment:
+      VITE_API_URL: http://backend:5000
     depends_on:
       - backend
 
