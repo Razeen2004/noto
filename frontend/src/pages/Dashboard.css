@@ -472,6 +472,18 @@
 }
 
 @media (max-width: 600px) {
+    .notes-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .notes-title {
+        font-size: 1rem;
+    }
+
+    .notes-title {
+        font-weight: 500;
+    }
+
     .notes-main {
         padding: 16px;
     }
