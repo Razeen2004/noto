@@ -499,7 +499,71 @@ body {
     .hero-text h1,
     .features-header h2,
     .faqs-header h2 {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
         line-height: 1.2;
+    }
+
+    .feature-box {
+        border-radius: 10px;
+    }
+
+    .feature-icon svg {
+        font-size: 1.1rem;
+        color: #fcfcfc;
+    }
+
+    .feature-icon {
+        width: 35px;
+        height: 35px;
+        border-radius: 5px;
+    }
+
+    .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+    }
+
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .nav-links a {
+        color: #fcfcfc;
+        text-decoration: none;
+        opacity: .8;
+        font-size: 0.7rem;
+    }
+
+    .feature-box p {
+        opacity: .75;
+        line-height: 1.55;
+        font-size: 0.7rem;
+    }
+
+    .feature-box h3 {
+        font-size: 0.8rem;
+        margin-bottom: 5px;
+    }
+
+    .faq-question span {
+        text-align: left;
+        font-size: 0.9rem;
+    }
+
+    .faq-answer {
+        padding: 0 24px 20px;
+        opacity: .75;
+        line-height: 1.6;
+        font-size: 0.75rem;
     }
 }
